@@ -3,9 +3,10 @@ library(shinydashboard)
 library(leaflet)
 library(rgdal)
 library(raster)
-library(dplyr)
+#library(dplyr)
 library(DT)
 
+### Introduction ###
 # Cách 1
 m <- leaflet()
 m <- leaflet() %>%
@@ -198,3 +199,26 @@ m <- leaflet() %>%
             position = "topright") %>%
   addLayersControl(overlayGroups = c("KhuCongNghiep", "Cho"),
                    options = layersControlOptions(collapsed = FALSE))
+
+### Raster Images (R Studio hiển thị bình thường, không bị hiển thị lỗi)
+NTB_shp <- readOGR("data/NTB.shp")
+r <- raster("data/NDVI-Q4-2018.tif")
+crs(r) <- CRS("+init=epsg:4326")
+pal <- colorNumeric(c("#0C2C84", "#41B6C4", "#FFFFCC"),
+                    values(r),
+                    na.color = "transparent")
+
+m <- leaflet() %>%
+  addProviderTiles(providers$OpenStreetMap) %>%
+  setView(lng = 108.384, lat = 13.794, zoom = 6) %>%
+  # addPolygons(data = NTB_shp,
+  #             color = "blue",
+  #             weight = 1,
+  #             fillOpacity = 0.2,
+  #             label = NTB_shp$VARNAME_1) %>%
+  addRasterImage(r,
+                 opacity = 0.8,
+                 project = T) %>%
+  addLegend(pal = pal,
+            values = values(r),
+            title = "Surface temp")
