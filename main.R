@@ -28,8 +28,8 @@ m <- leaflet() %>%
   #addProviderTiles(providers$OpenTopoMap) %>%
   setView(lng = 106.660172, lat = 10.762622, zoom = 11) %>%
 
-#Adding Shapefiles
-m <- leaflet() %>%
+  #Adding Shapefiles
+  m <- leaflet() %>%
   #addTiles() %>%
   addProviderTiles(providers$Esri) %>%
   #addProviderTiles(providers$OpenTopoMap) %>%
@@ -64,8 +64,8 @@ HCM_kcn <- read.csv("data/HCM_KCN.csv")
 #Adding Labels to Markets and Clustering(Can Custom HTML)
 library(htmltools)
 label_KCN <- paste("<span>", HCM_kcn$TenKCN, "</span>", "<br>",
-                  "<span>", "Kinh độ", HCM_kcn$Lng, "</span>", "<br>",
-                  "<span>", "Vĩ độ", HCM_kcn$Lat, "</span>")
+                   "<span>", "Kinh độ", HCM_kcn$Lng, "</span>", "<br>",
+                   "<span>", "Vĩ độ", HCM_kcn$Lat, "</span>")
 m <- leaflet() %>%
   #addTiles() %>%
   addProviderTiles(providers$Esri) %>%
@@ -88,11 +88,11 @@ HCM_kcn <- read.csv("data/HCM_KCN.csv")
 #Interactive Controls (Không thể fix tiếng Việt, kể cả khi xuất file HTML)
 library(htmltools)
 label_KCN <- paste("<span>", HCM_kcn$TenKCN, "</span>", "<br>",
-                  "<span>", "Longitude", HCM_kcn$Lng, "</span>", "<br>",
-                  "<span>", "Latitude", HCM_kcn$Lat, "</span>")
+                   "<span>", "Longitude", HCM_kcn$Lng, "</span>", "<br>",
+                   "<span>", "Latitude", HCM_kcn$Lat, "</span>")
 label_Cho <- paste("<span>", HCM_cho$TEN_CHO, "</span>", "<br>",
-                  "<span>", "Longitude", HCM_cho$Lng, "</span>", "<br>",
-                  "<span>", "Latitude", HCM_cho$Lat, "</span>")
+                   "<span>", "Longitude", HCM_cho$Lng, "</span>", "<br>",
+                   "<span>", "Latitude", HCM_cho$Lat, "</span>")
 m <- leaflet() %>%
   #addTiles() %>%
   addProviderTiles(providers$Esri) %>%
@@ -125,8 +125,8 @@ HCM_cho <- read.csv("data/HCM_Cho.csv")
 library(htmltools)
 HCM_shp <- readOGR("data/HCMC-Districts.shp")
 label_HCMshp <- paste("<span>", HCM_shp$VARNAME_3, "</span>", "<br>",
-                  "<span>", "Longitude", HCM_shp$X, "</span>", "<br>",
-                  "<span>", "Latitude", HCM_shp$Y, "</span>")
+                      "<span>", "Longitude", HCM_shp$X, "</span>", "<br>",
+                      "<span>", "Latitude", HCM_shp$Y, "</span>")
 
 bins <- c(0.08, 0.1, 0.12, 0.2, 0.24, 0.28, 0.3, 0.4, 0.6, 1, 3)
 pal <- colorBin("RdYlBu", domain = HCM_shp$Shape_Leng, bins = bins)
@@ -139,11 +139,11 @@ m <- leaflet() %>%
               fillOpacity = 0.8,
               fillColor = pal(HCM_shp$Shape_Leng),
               label = lapply(label_HCMshp, HTML)) %>%
-              #highlightOptions = highlightOptions(weight = 5,
-              #                                    color = "#666666",
-              #                                    dashArray = "",
-              #                                    fillOpacity = 0.7,
-              #                                    bringToFront = TRUE)
+  #highlightOptions = highlightOptions(weight = 5,
+  #                                    color = "#666666",
+  #                                    dashArray = "",
+  #                                    fillOpacity = 0.7,
+  #                                    bringToFront = TRUE)
   addLegend(pal = pal,
             values = HCM_shp$Shape_Leng,
             opacity = 0.7,
@@ -157,14 +157,14 @@ HCM_kcn <- read.csv("data/HCM_KCN.csv")
 HCM_cho <- read.csv("data/HCM_Cho.csv")
 
 label_KCN <- paste("<span>", HCM_kcn$TenKCN, "</span>", "<br>",
-                  "<span>", "Longitude", HCM_kcn$Lng, "</span>", "<br>",
-                  "<span>", "Latitude", HCM_kcn$Lat, "</span>")
+                   "<span>", "Longitude", HCM_kcn$Lng, "</span>", "<br>",
+                   "<span>", "Latitude", HCM_kcn$Lat, "</span>")
 label_Cho <- paste("<span>", HCM_cho$TEN_CHO, "</span>", "<br>",
-                  "<span>", "Longitude", HCM_cho$Lng, "</span>", "<br>",
-                  "<span>", "Latitude", HCM_cho$Lat, "</span>")
+                   "<span>", "Longitude", HCM_cho$Lng, "</span>", "<br>",
+                   "<span>", "Latitude", HCM_cho$Lat, "</span>")
 label_HCMshp <- paste("<span>", HCM_shp$VARNAME_3, "</span>", "<br>",
-                  "<span>", "Longitude", HCM_shp$X, "</span>", "<br>",
-                  "<span>", "Latitude", HCM_shp$Y, "</span>")
+                      "<span>", "Longitude", HCM_shp$X, "</span>", "<br>",
+                      "<span>", "Latitude", HCM_shp$Y, "</span>")
 
 bins <- c(0.08, 0.1, 0.12, 0.2, 0.24, 0.28, 0.3, 0.4, 0.6, 1, 3)
 pal <- colorBin("RdYlBu", domain = HCM_shp$Shape_Leng, bins = bins)
@@ -180,19 +180,19 @@ m <- leaflet() %>%
               fillColor = pal(HCM_shp$Shape_Leng),
               label = lapply(label_HCMshp, HTML)) %>%
   addCircleMarkers(lng = HCM_kcn$Lng,
-             lat = HCM_kcn$Lat,
-             color = "green",
-             weight = 2,
-             radius = 5,
-             group = "KhuCongNghiep",
-             label = lapply(label_KCN, HTML)) %>%
+                   lat = HCM_kcn$Lat,
+                   color = "green",
+                   weight = 2,
+                   radius = 5,
+                   group = "KhuCongNghiep",
+                   label = lapply(label_KCN, HTML)) %>%
   addCircleMarkers(lng = HCM_cho$Lng,
-             lat = HCM_cho$Lat,
-             color = "blue",
-             weight = 2,
-             radius = 5,
-             group = "Cho",
-             label = lapply(label_Cho, HTML)) %>%
+                   lat = HCM_cho$Lat,
+                   color = "blue",
+                   weight = 2,
+                   radius = 5,
+                   group = "Cho",
+                   label = lapply(label_Cho, HTML)) %>%
   addLegend(pal = pal,
             values = HCM_shp$Shape_Leng,
             opacity = 0.7,
